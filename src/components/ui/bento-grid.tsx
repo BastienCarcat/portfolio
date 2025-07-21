@@ -10,6 +10,7 @@ interface BentoGridProps extends ComponentPropsWithoutRef<"div"> {
 interface BentoCardProps extends ComponentPropsWithoutRef<"div"> {
   children: ReactNode;
   className: string;
+  ref?: React.Ref<HTMLDivElement>;
 }
 
 const BentoGrid = ({ children, className, ...props }: BentoGridProps) => {
@@ -20,8 +21,9 @@ const BentoGrid = ({ children, className, ...props }: BentoGridProps) => {
   );
 };
 
-const BentoCard = ({ className, children }: BentoCardProps) => (
+const BentoCard = ({ className, children, ...props }: BentoCardProps) => (
   <div
+    ref={props.ref}
     className={cn(
       "group relative overflow-hidden px-11 py-7 rounded-xl",
       // light styles

@@ -1,8 +1,8 @@
 "use client";
 
 import { BentoGrid } from "@/components/ui/bento-grid";
-import { motion, useScroll } from "motion/react";
-import { useRef, useState, useEffect, useMemo } from "react";
+import { motion, useScroll, AnimatePresence } from "motion/react";
+import { useRef, useState, useEffect } from "react";
 import HeaderCard from "../(home)/_components/header-card";
 import TitleCard from "../(home)/_components/title-card";
 import DescriptionCard from "../(home)/_components/description-card";
@@ -20,24 +20,43 @@ export default function MotionGrid() {
 
   const [isGrid, setIsGrid] = useState(false);
 
-  const animate = useMemo(() => {
-    if (isGrid) {
-      return "scrollDown";
-    } else {
-      return "scrollUp";
-    }
-  }, [isGrid]);
-
   useEffect(() => {
-    const unsubscribe = scrollYProgress.on("change", (p) => {
-      setIsGrid(p > 0.2); // seuil à ajuster
+    const unsubscribe = scrollYProgress.on("change", (progress) => {
+      setIsGrid(progress > 0.2);
     });
     return () => unsubscribe();
   }, [scrollYProgress]);
 
+  // Animation variants pour les autres cartes
   const cardVariants = {
-    scrollUp: { y: 50, opacity: 0 },
-    scrollDown: { y: 0, opacity: 1 },
+    hidden: {
+      opacity: 0,
+      scale: 0.8,
+      y: 50,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.25, 0, 1],
+      },
+    },
+  };
+
+  // Container variants pour l'animation échelonnée
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
   };
 
   const MotionHeaderCard = motion(HeaderCard);
@@ -50,64 +69,102 @@ export default function MotionGrid() {
 
   return (
     <div ref={containerRef} className="min-h-[200vh] relative">
-      {/* PHOTO CARD CENTRÉE */}
+      {/* État initial : Photo centrée avec scale */}
       {!isGrid && (
-        <motion.div
-          layoutId="picture"
-          className="fixed top-1/2 left-1/2 z-50 flex items-center justify-center transform -translate-x-1/2 -translate-y-1/2"
-        >
-          <PictureCard className="custom-class" children={null} />
-        </motion.div>
-        // <MotionPictureCard
-        //   layoutId="picture"
-        //   className="fixed top-1/2 left-1/2 z-50 w-64 h-64 transform -translate-x-1/2 flex items-center justify-center -translate-y-1/2"
-        //   children={null}
-        // />
+        <div className="fixed inset-0 flex items-center justify-center z-10">
+          <MotionPictureCard
+            layoutId="picture"
+            layout
+            className="scale-150 pointer-events-auto !col-span-auto !row-span-auto w-80 h-96"
+            transition={{
+              layout: {
+                duration: 0.8,
+                ease: [0.25, 0.25, 0, 1],
+              },
+            }}
+          />
+        </div>
       )}
 
-      {/* GRID CONTENANT LES AUTRES CARTES */}
+      {/* État grid : Photo dans la grid avec autres cartes */}
       {isGrid && (
-        <div className="fixed top-0 left-0 w-full h-screen pointer-events-none">
-          <BentoGrid className="h-screen p-5 grid-rows-10">
-            <MotionHeaderCard
-              animate={animate}
-              initial="scrollUp"
-              variants={cardVariants}
-            ></MotionHeaderCard>
-            <MotionTitleCard
-              animate={animate}
-              initial="scrollUp"
-              variants={cardVariants}
-            ></MotionTitleCard>
-            {/* <motion.div
-              layoutId="picture"
-              className="lg:col-span-3 col-span-12 lg:row-span-5"
-            >
-              <PictureCard className="custom-class" children={null} />
-            </motion.div> */}
-            <MotionPictureCard layoutId="picture" />
-            <MotionProjectsCard
-              animate={animate}
-              initial="scrollUp"
-              variants={cardVariants}
-            ></MotionProjectsCard>
-            <MotionDescriptionCard
-              animate={animate}
-              initial="scrollUp"
-              variants={cardVariants}
-            ></MotionDescriptionCard>
-            <MotionContactCard
-              animate={animate}
-              initial="scrollUp"
-              variants={cardVariants}
-            ></MotionContactCard>
-            <MotionSocialsCard
-              animate={animate}
-              initial="scrollUp"
-              variants={cardVariants}
-            ></MotionSocialsCard>
+        <motion.div
+          className="fixed inset-0 p-5"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <BentoGrid className="h-screen grid-rows-10">
+            <AnimatePresence>
+              <MotionHeaderCard
+                key="header"
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                className="pointer-events-auto"
+              />
+
+              <MotionTitleCard
+                key="title"
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                className="pointer-events-auto"
+              />
+
+              {/* PictureCard avec taille responsive naturelle */}
+              <MotionPictureCard
+                layoutId="picture"
+                layout
+                className="pointer-events-auto"
+                transition={{
+                  layout: {
+                    duration: 0.8,
+                    ease: [0.25, 0.25, 0, 1],
+                  },
+                }}
+              />
+
+              <MotionProjectsCard
+                key="projects"
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                className="pointer-events-auto"
+              />
+
+              <MotionDescriptionCard
+                key="description"
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                className="pointer-events-auto"
+              />
+
+              <MotionContactCard
+                key="contact"
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                className="pointer-events-auto"
+              />
+
+              <MotionSocialsCard
+                key="socials"
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                className="pointer-events-auto"
+              />
+            </AnimatePresence>
           </BentoGrid>
-        </div>
+        </motion.div>
       )}
     </div>
   );

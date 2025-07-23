@@ -1,19 +1,21 @@
 import { BentoCard } from "@/components/ui/bento-grid";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import React from "react";
+import { forwardRef } from "react";
 
-export default React.forwardRef<
+const PictureCard = forwardRef<
   HTMLDivElement,
   React.ComponentPropsWithRef<typeof BentoCard>
->(function PictureCard(props, ref) {
-  const { className, ...otherProps } = props;
-  
+>((props, ref) => {
+  const { className } = props;
+
   return (
     <BentoCard
       ref={ref}
-      className={cn("lg:col-span-3 col-span-12 lg:row-span-5 overflow-hidden p-0", className)}
-      {...otherProps}
+      className={cn(
+        "lg:col-span-3 col-span-12 lg:row-span-5 overflow-hidden p-0",
+        className
+      )}
     >
       <div className="relative w-full h-full aspect-[3/4]">
         <Image
@@ -28,3 +30,7 @@ export default React.forwardRef<
     </BentoCard>
   );
 });
+
+PictureCard.displayName = "PictureCard";
+
+export default PictureCard;

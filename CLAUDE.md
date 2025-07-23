@@ -66,3 +66,8 @@ Motion-enabled components should:
 - Be wrapped with `motion()` function
 - Include `animate`, `initial`, and `variants` props
 - Use consistent animation variants from the main MotionGrid component
+
+## Best Practices
+
+- **Code Comments**:
+  - Write comments in code only if necessary

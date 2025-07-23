@@ -27,7 +27,6 @@ export default function MotionGrid() {
     return () => unsubscribe();
   }, [scrollYProgress]);
 
-  // Animation variants pour les autres cartes
   const cardVariants = {
     hidden: {
       opacity: 0,
@@ -40,12 +39,11 @@ export default function MotionGrid() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.25, 0.25, 0, 1],
+        ease: [0.25, 0.25, 0, 1] as const,
       },
     },
   };
 
-  // Container variants pour l'animation échelonnée
   const containerVariants = {
     hidden: {
       opacity: 0,
@@ -69,13 +67,12 @@ export default function MotionGrid() {
 
   return (
     <div ref={containerRef} className="min-h-[200vh] relative">
-      {/* État initial : Photo centrée avec scale */}
       {!isGrid && (
         <div className="fixed inset-0 flex items-center justify-center z-10">
           <MotionPictureCard
             layoutId="picture"
             layout
-            className="scale-150 pointer-events-auto !col-span-auto !row-span-auto w-80 h-96"
+            className="scale-200  pointer-events-auto !col-span-auto !row-span-auto w-80 h-96"
             transition={{
               layout: {
                 duration: 0.8,
@@ -86,15 +83,14 @@ export default function MotionGrid() {
         </div>
       )}
 
-      {/* État grid : Photo dans la grid avec autres cartes */}
       {isGrid && (
         <motion.div
-          className="fixed inset-0 p-5"
+          className="fixed inset-0"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          <BentoGrid className="h-screen grid-rows-10">
+          <BentoGrid className="h-screen p-5 grid-rows-10">
             <AnimatePresence>
               <MotionHeaderCard
                 key="header"
@@ -102,7 +98,6 @@ export default function MotionGrid() {
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
-                className="pointer-events-auto"
               />
 
               <MotionTitleCard
@@ -111,14 +106,11 @@ export default function MotionGrid() {
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
-                className="pointer-events-auto"
               />
 
-              {/* PictureCard avec taille responsive naturelle */}
               <MotionPictureCard
                 layoutId="picture"
                 layout
-                className="pointer-events-auto"
                 transition={{
                   layout: {
                     duration: 0.8,
@@ -133,7 +125,6 @@ export default function MotionGrid() {
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
-                className="pointer-events-auto"
               />
 
               <MotionDescriptionCard
@@ -142,7 +133,6 @@ export default function MotionGrid() {
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
-                className="pointer-events-auto"
               />
 
               <MotionContactCard
@@ -151,7 +141,6 @@ export default function MotionGrid() {
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
-                className="pointer-events-auto"
               />
 
               <MotionSocialsCard
@@ -160,7 +149,6 @@ export default function MotionGrid() {
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
-                className="pointer-events-auto"
               />
             </AnimatePresence>
           </BentoGrid>

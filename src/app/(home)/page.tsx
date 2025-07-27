@@ -2,7 +2,7 @@
 
 import { BentoGrid } from "@/components/ui/bento-grid";
 import { motion, useScroll, AnimatePresence } from "motion/react";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo, useCallback } from "react";
 import HeaderCard from "../(home)/_components/header-card";
 import TitleCard from "../(home)/_components/title-card";
 import DescriptionCard from "../(home)/_components/description-card";
@@ -10,6 +10,7 @@ import PictureCard from "../(home)/_components/picture-card";
 import ProjectsCard from "../(home)/_components/projects-card";
 import SocialsCard from "../(home)/_components/socials-card";
 import ContactCard from "../(home)/_components/contact-card";
+import { Mouse } from "lucide-react";
 
 export default function MotionGrid() {
   const containerRef = useRef(null);
@@ -20,66 +21,79 @@ export default function MotionGrid() {
 
   const [isGrid, setIsGrid] = useState(false);
 
+  const setIsGridCallback = useCallback((progress: number) => {
+    const shouldBeGrid = progress > 0.2;
+    setIsGrid((prev) => (prev !== shouldBeGrid ? shouldBeGrid : prev));
+  }, []);
+
   useEffect(() => {
-    const unsubscribe = scrollYProgress.on("change", (progress) => {
-      setIsGrid(progress > 0.2);
-    });
+    const unsubscribe = scrollYProgress.on("change", setIsGridCallback);
     return () => unsubscribe();
-  }, [scrollYProgress]);
+  }, [scrollYProgress, setIsGridCallback]);
 
-  const cardVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.8,
-      y: 50,
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.25, 0, 1] as const,
+  const cardVariants = useMemo(
+    () => ({
+      hidden: {
+        opacity: 0,
+        scale: 0.9,
+        y: 20,
       },
-    },
-  };
-
-  const containerVariants = {
-    hidden: {
-      opacity: 0,
-    },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
+      visible: {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        transition: {
+          duration: 0.4,
+          ease: [0.22, 1, 0.36, 1] as const,
+        },
       },
-    },
-  };
+    }),
+    []
+  );
 
-  const MotionHeaderCard = motion(HeaderCard);
-  const MotionTitleCard = motion(TitleCard);
-  const MotionDescriptionCard = motion(DescriptionCard);
-  const MotionPictureCard = motion(PictureCard);
-  const MotionProjectsCard = motion(ProjectsCard);
-  const MotionSocialsCard = motion(SocialsCard);
-  const MotionContactCard = motion(ContactCard);
+  const containerVariants = useMemo(
+    () => ({
+      hidden: {
+        opacity: 0,
+      },
+      visible: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.05,
+          delayChildren: 0.1,
+        },
+      },
+    }),
+    []
+  );
+
+  const MotionHeaderCard = useMemo(() => motion(HeaderCard), []);
+  const MotionTitleCard = useMemo(() => motion(TitleCard), []);
+  const MotionDescriptionCard = useMemo(() => motion(DescriptionCard), []);
+  const MotionPictureCard = useMemo(() => motion(PictureCard), []);
+  const MotionProjectsCard = useMemo(() => motion(ProjectsCard), []);
+  const MotionSocialsCard = useMemo(() => motion(SocialsCard), []);
+  const MotionContactCard = useMemo(() => motion(ContactCard), []);
 
   return (
     <div ref={containerRef} className="min-h-[200vh] relative">
       {!isGrid && (
         <div className="fixed inset-0 flex items-center justify-center z-10">
-          <MotionPictureCard
-            layoutId="picture"
-            layout
-            className="scale-200  pointer-events-auto !col-span-auto !row-span-auto w-80 h-96"
-            transition={{
-              layout: {
-                duration: 0.8,
-                ease: [0.25, 0.25, 0, 1],
-              },
-            }}
-          />
+          <div className="relative">
+            <MotionPictureCard
+              layoutId="picture"
+              layout
+              className="scale-150 pointer-events-auto !col-span-auto !row-span-auto w-80 h-96"
+              transition={{
+                layout: {
+                  duration: 0.5,
+                  ease: [0.22, 1, 0.36, 1],
+                },
+              }}
+            />
+
+            <Mouse className="h-9 w-9 absolute bottom-0 left-1/2 transform translate-y-52 -translate-x-1/2" />
+          </div>
         </div>
       )}
 
@@ -90,7 +104,7 @@ export default function MotionGrid() {
           initial="hidden"
           animate="visible"
         >
-          <BentoGrid className="h-screen p-5 grid-rows-10">
+          <BentoGrid className="h-screen p-5 grid-rows-10 will-change-transform">
             <AnimatePresence>
               <MotionHeaderCard
                 key="header"
@@ -113,8 +127,8 @@ export default function MotionGrid() {
                 layout
                 transition={{
                   layout: {
-                    duration: 0.8,
-                    ease: [0.25, 0.25, 0, 1],
+                    duration: 0.5,
+                    ease: [0.22, 1, 0.36, 1],
                   },
                 }}
               />

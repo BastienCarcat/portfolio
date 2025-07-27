@@ -3,5 +3,5 @@ export default function HomeLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <main className="px-5 bg-primary-foreground">{children}</main>;
+  return <main className="px-5  overflow-hidden ">{children}</main>;
 }

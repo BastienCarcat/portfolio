@@ -1,12 +1,5 @@
 import type { Metadata } from "next";
-import {
-  britney,
-  britneyVariable,
-  newTitle,
-  newTitleVariable,
-  melodrama,
-  melodramaVariable,
-} from "@/lib/fonts";
+import { literata, satoshi, satoshiVariable } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${britney.variable} ${britneyVariable.variable} ${newTitle.variable} ${newTitleVariable.variable} ${melodrama.variable} ${melodramaVariable.variable} bg-background antialiased min-h-screen`}
+        className={`${literata.variable} ${satoshi.variable} ${satoshiVariable.variable} bg-background font-satoshi antialiased min-h-screen`}
       >
         {children}
       </body>

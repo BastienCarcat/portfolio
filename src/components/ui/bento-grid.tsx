@@ -13,12 +13,12 @@ const bentoCardVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          // light styles
-          "bg-gray-400 " +
-          // dark styles
-          "dark:bg-gray-400",
         accent:
+          // light styles
+          "bg-card-accent " +
+          // dark styles
+          "dark:bg-card-accent",
+        default:
           // light styles
           "text-white bg-card " +
           // dark styles
@@ -51,7 +51,7 @@ const BentoCard = forwardRef<HTMLDivElement, BentoCardProps>(
     <div
       ref={ref}
       className={cn(
-        "font-newtitle relative",
+        "relative",
         // light styles,
         "[box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
         // dark styles,

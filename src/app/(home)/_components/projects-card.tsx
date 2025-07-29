@@ -19,7 +19,10 @@ const ProjectsCard = forwardRef<
   }, []);
 
   return (
-    <BentoCard ref={ref} className="lg:col-span-4 col-span-12 lg:row-span-8">
+    <BentoCard
+      ref={ref}
+      className="lg:col-span-4 col-span-12 lg:row-span-8 font-literata"
+    >
       <ul>
         {projects.map((project, i) => (
           <motion.li
@@ -38,7 +41,7 @@ const ProjectsCard = forwardRef<
               setCursorPosition({ x: e.clientX, y: e.clientY });
             }}
           >
-            <span className="text-6xl">{project.name}</span>
+            <span className="text-5xl">{project.name}</span>
             {hoveredIndex === project.id && (
               <div
                 className="custom-cursor fixed w-10 h-10 bg-black rounded-full flex items-center justify-center pointer-events-none z-50 transform -translate-x-1/2 -translate-y-1/2"

@@ -92,7 +92,7 @@ export default function MotionGrid() {
               }}
             />
 
-            <Mouse className="h-9 w-9 absolute bottom-0 left-1/2 transform translate-y-52 -translate-x-1/2" />
+            <Mouse className="h-9 w-9 absolute bottom-0 left-1/2 transform translate-y-48 -translate-x-1/2" />
           </div>
         </div>
       )}

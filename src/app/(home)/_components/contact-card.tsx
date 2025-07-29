@@ -1,4 +1,5 @@
 import { BentoCard } from "@/components/ui/bento-grid";
+import { siteConfig } from "@/config/site";
 import { ArrowUpRight } from "lucide-react";
 import { forwardRef, useCallback } from "react";
 
@@ -7,19 +8,19 @@ const ContactCard = forwardRef<
   React.ComponentPropsWithRef<typeof BentoCard>
 >((_, ref) => {
   const handleMailtoClick = useCallback(() => {
-    window.location.href = "mailto:mail";
+    window.location.href = `mailto:${siteConfig.contact.email}`;
   }, []);
 
   return (
     <BentoCard
       ref={ref}
-      className="lg:col-span-4 col-span-12 lg:row-span-4 group cursor-pointer font-literata"
+      className="lg:col-span-4 col-span-12 lg:row-span-4 group cursor-pointer font-kaisei"
       variant="accent"
       onClick={handleMailtoClick}
     >
       <div className="flex h-full flex-col justify-between">
         <div className="flex justify-between items-start">
-          <p className="text-xl font-satoshi">Un projet en tête ? </p>
+          <p className="text-xl font-satoshi">Un projet en tête ?</p>
         </div>
 
         <div className="text-6xl">

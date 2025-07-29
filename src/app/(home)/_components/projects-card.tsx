@@ -1,6 +1,6 @@
 import { BentoCard } from "@/components/ui/bento-grid";
 import { forwardRef, useMemo, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, MoveRight } from "lucide-react";
 import { motion } from "motion/react";
 
 const ProjectsCard = forwardRef<
@@ -12,7 +12,7 @@ const ProjectsCard = forwardRef<
 
   const projects = useMemo(() => {
     return [
-      { name: "GymFit", id: 0 },
+      { name: "Gym Fit", id: 0 },
       { name: "Forminotion", id: 1 },
       { name: "Thumbly", id: 2 },
     ];
@@ -21,16 +21,12 @@ const ProjectsCard = forwardRef<
   return (
     <BentoCard
       ref={ref}
-      className="lg:col-span-4 col-span-12 lg:row-span-8 font-literata"
+      className="lg:col-span-4 col-span-12 lg:row-span-8 font-kaisei px-7"
     >
       <ul>
         {projects.map((project, i) => (
-          <motion.li
-            whileHover={{
-              backgroundColor: "red",
-              transition: { duration: 1 },
-            }}
-            className="py-6 group relative hover:cursor-none"
+          <li
+            className="py-8 px-4 group relative hover:cursor-none rounded-lg hover:bg-card-accent"
             key={i}
             onMouseEnter={(e) => {
               setHoveredIndex(i);
@@ -41,16 +37,31 @@ const ProjectsCard = forwardRef<
               setCursorPosition({ x: e.clientX, y: e.clientY });
             }}
           >
-            <span className="text-5xl">{project.name}</span>
+            <div className="flex justify-between items-center">
+              <span className="text-5xl">{project.name}</span>
+              <MoveRight className="w-10 h-10" />
+            </div>
+
+            {/* <motion.div
+              whileHover={{ y: [0, -10, 0] }}
+              transition={{
+                duration: 0.6,
+                ease: "easeInOut",
+            
+              }}
+              className="flex justify-between items-center rounded-lg hover:bg-card-accent"
+            > <span className="text-5xl">{project.name}</span>
+              <MoveRight className="w-10 h-10" /></motion.div> */}
+
             {hoveredIndex === project.id && (
               <div
-                className="custom-cursor fixed w-10 h-10 bg-black rounded-full flex items-center justify-center pointer-events-none z-50 transform -translate-x-1/2 -translate-y-1/2"
+                className="custom-cursor fixed w-14 h-14 bg-background rounded-full flex items-center justify-center pointer-events-none z-50 transform -translate-x-1/2 -translate-y-1/2"
                 style={{ left: cursorPosition.x, top: cursorPosition.y }}
               >
-                <ArrowUpRight className="w-6 h-6 text-white" />
+                <ArrowUpRight className="w-8 h-8 text-black" />
               </div>
             )}
-          </motion.li>
+          </li>
         ))}
       </ul>
     </BentoCard>

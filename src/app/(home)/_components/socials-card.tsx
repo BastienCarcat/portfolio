@@ -1,5 +1,6 @@
 import { LinkedinIcon } from "@/components/icons/linkedin";
 import { BentoCard } from "@/components/ui/bento-grid";
+import { siteConfig } from "@/config/site";
 import { forwardRef, JSX, useMemo } from "react";
 
 type Icon = {
@@ -14,18 +15,18 @@ const SocialsCard = forwardRef<
 >((_, ref) => {
   const icons: Icon[] = useMemo(
     () => [
-      { name: "github", href: "https://github.com" },
+      { name: "github", href: siteConfig.social.github },
       {
         name: "malt",
-        href: "https://malt.fr",
+        href: siteConfig.social.malt,
       },
       {
         name: "x",
-        href: "https://x.com",
+        href: siteConfig.social.x,
       },
       {
         name: "linkedin",
-        href: "https://malt.fr",
+        href: siteConfig.social.linkedin,
         icon: <LinkedinIcon className="w-8 h-8 dark:text-white text-black" />,
       },
     ],
@@ -44,7 +45,7 @@ const SocialsCard = forwardRef<
             href={icon.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-lg bg-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="p-2 rounded-lg bg-card-accent hover:bg-primary dark:hover:bg-primary transition-colors"
           >
             {!!icon.icon ? (
               icon.icon
@@ -52,7 +53,7 @@ const SocialsCard = forwardRef<
               <img
                 height="32"
                 width="32"
-                src={`https://cdn.simpleicons.org/${icon.name}/000000`}
+                src={`${siteConfig.external.simpleIcons}/${icon.name}/000000`}
               />
             )}
           </a>

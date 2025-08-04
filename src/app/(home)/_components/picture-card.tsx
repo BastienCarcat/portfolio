@@ -16,7 +16,6 @@ const PictureCard = forwardRef<
         "lg:col-span-3 col-span-12 lg:row-span-5 overflow-hidden p-0",
         className
       )}
-      variant="accent"
     >
       <div className="relative w-full h-full aspect-[3/4]">
         <Image

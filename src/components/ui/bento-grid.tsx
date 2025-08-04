@@ -13,16 +13,16 @@ const bentoCardVariants = cva(
   {
     variants: {
       variant: {
-        accent:
+        secondary:
           // light styles
-          "bg-card-accent " +
+          "bg-secondary text-secondary-foreground " +
           // dark styles
-          "dark:bg-card-accent",
+          "dark:bg-secondary text-secondary-foreground ",
         default:
           // light styles
-          "text-white bg-card " +
+          "text-primary-foreground bg-primary " +
           // dark styles
-          "dark:bg-card",
+          "dark:bg-primary text-primary-foreground",
       },
     },
     defaultVariants: {

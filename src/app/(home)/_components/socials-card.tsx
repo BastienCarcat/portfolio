@@ -27,7 +27,7 @@ const SocialsCard = forwardRef<
       {
         name: "linkedin",
         href: siteConfig.social.linkedin,
-        icon: <LinkedinIcon className="w-8 h-8 dark:text-white text-black" />,
+        icon: <LinkedinIcon className="w-8 h-8 text-secondary" />,
       },
     ],
     []
@@ -38,14 +38,15 @@ const SocialsCard = forwardRef<
       ref={ref}
       className="lg:col-span-4 col-span-12 lg:row-span-1 py-2"
     >
-      <div className="flex items-center h-full gap-8 justify-center">
+      <div className="flex items-center h-full gap-12 justify-center">
         {icons.map((icon, i) => (
           <a
+            className="hover:scale-110"
             key={i}
             href={icon.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-lg bg-card-accent hover:bg-primary dark:hover:bg-primary transition-colors"
+            // className="p-2 rounded-lg bg-card-accent hover:bg-primary dark:hover:bg-primary transition-colors"
           >
             {!!icon.icon ? (
               icon.icon
@@ -53,7 +54,7 @@ const SocialsCard = forwardRef<
               <img
                 height="32"
                 width="32"
-                src={`${siteConfig.external.simpleIcons}/${icon.name}/000000`}
+                src={`${siteConfig.external.simpleIcons}/${icon.name}/a8977b`}
               />
             )}
           </a>

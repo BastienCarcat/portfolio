@@ -15,7 +15,7 @@ const ContactCard = forwardRef<
     <BentoCard
       ref={ref}
       className="lg:col-span-4 col-span-12 lg:row-span-4 group cursor-pointer font-kaisei"
-      variant="accent"
+      variant="secondary"
       onClick={handleMailtoClick}
     >
       <div className="flex h-full flex-col justify-between">

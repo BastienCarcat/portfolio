@@ -1,7 +1,7 @@
 import { BentoCard } from "@/components/ui/bento-grid";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { siteConfig } from "@/config/site";
-import { Mail, SendHorizonal } from "lucide-react";
+import { Calendar } from "lucide-react";
 import { forwardRef, useCallback } from "react";
 
 const HeaderCard = forwardRef<
@@ -9,7 +9,7 @@ const HeaderCard = forwardRef<
   React.ComponentPropsWithRef<typeof BentoCard>
 >((_, ref) => {
   const handleMailtoClick = useCallback(() => {
-    window.location.href = `mailto:${siteConfig.contact.email}`;
+    window.open(siteConfig.contact.callBooking, '_blank');
   }, []);
   return (
     <BentoCard ref={ref} className="col-span-12 lg:row-span-1 py-2">
@@ -19,10 +19,10 @@ const HeaderCard = forwardRef<
           <span className="font-light"> CARCAT</span>
         </p>
         <InteractiveHoverButton
-          icon={<Mail className="h-4 w-4" />}
+          icon={<Calendar className="h-4 w-4" />}
           onClick={handleMailtoClick}
         >
-          Contact
+          Réserver un appel
         </InteractiveHoverButton>
       </div>
     </BentoCard>

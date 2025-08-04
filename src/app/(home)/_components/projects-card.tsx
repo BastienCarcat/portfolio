@@ -2,21 +2,27 @@ import { BentoCard } from "@/components/ui/bento-grid";
 import { forwardRef, useMemo, useState } from "react";
 import { ArrowRight, ArrowUpRight, MoveRight } from "lucide-react";
 import { motion } from "motion/react";
+import { useRouter } from "next/navigation";
 
 const ProjectsCard = forwardRef<
   HTMLDivElement,
   React.ComponentPropsWithRef<typeof BentoCard>
 >((_, ref) => {
+  const router = useRouter();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   const projects = useMemo(() => {
     return [
-      { name: "Gym Fit", id: 0 },
-      { name: "Forminotion", id: 1 },
-      { name: "Thumbly", id: 2 },
+      { name: "Gym Fit", id: 0, key: "gym-fit" },
+      { name: "Forminotion", id: 1, key: "forminotion" },
+      { name: "Thumbly", id: 2, key: "thumbly" },
     ];
   }, []);
+
+  const handleProjectClick = (projectKey: string) => {
+    router.push(`/project/${projectKey}`);
+  };
 
   return (
     <BentoCard
@@ -26,8 +32,9 @@ const ProjectsCard = forwardRef<
       <ul>
         {projects.map((project, i) => (
           <li
-            className="py-8 px-4 group relative hover:cursor-none rounded-lg hover:bg-card-accent"
+            className="py-8 px-4 group relative hover:cursor-none rounded-lg hover:bg-secondary hover:text-secondary-foreground"
             key={i}
+            onClick={() => handleProjectClick(project.key)}
             onMouseEnter={(e) => {
               setHoveredIndex(i);
               setCursorPosition({ x: e.clientX, y: e.clientY });
@@ -38,7 +45,7 @@ const ProjectsCard = forwardRef<
             }}
           >
             <div className="flex justify-between items-center">
-              <span className="text-5xl">{project.name}</span>
+              <span className="text-4xl">{project.name}</span>
               <MoveRight className="w-10 h-10" />
             </div>
 
@@ -55,10 +62,10 @@ const ProjectsCard = forwardRef<
 
             {hoveredIndex === project.id && (
               <div
-                className="custom-cursor fixed w-14 h-14 bg-background rounded-full flex items-center justify-center pointer-events-none z-50 transform -translate-x-1/2 -translate-y-1/2"
+                className="custom-cursor fixed w-14 h-14 bg-secondary-foreground rounded-full flex items-center justify-center pointer-events-none z-50 transform -translate-x-1/2 -translate-y-1/2"
                 style={{ left: cursorPosition.x, top: cursorPosition.y }}
               >
-                <ArrowUpRight className="w-8 h-8 text-black" />
+                <ArrowUpRight className="w-8 h-8 text-secondary" />
               </div>
             )}
           </li>

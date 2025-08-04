@@ -20,6 +20,7 @@ export const siteConfig = {
   // Contact Information
   contact: {
     email: "bastien-carcat@orange.fr",
+    callBooking: "https://calendar.notion.so/meet/bastiencrct/point-projet",
   },
 
   // Social Links
@@ -40,6 +41,10 @@ export const siteConfig = {
   // External Services
   external: {
     simpleIcons: "https://cdn.simpleicons.org",
+  },
+
+  projects: {
+    gymFit: "https://www.gymfit-api.com/",
   },
 } as const;
 

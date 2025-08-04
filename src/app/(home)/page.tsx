@@ -3,6 +3,7 @@
 import { BentoGrid } from "@/components/ui/bento-grid";
 import { motion, useScroll, AnimatePresence } from "motion/react";
 import { useRef, useState, useEffect, useMemo, useCallback } from "react";
+import { useAnimation } from "@/lib/animation-context";
 import HeaderCard from "../(home)/_components/header-card";
 import TitleCard from "../(home)/_components/title-card";
 import DescriptionCard from "../(home)/_components/description-card";
@@ -12,19 +13,38 @@ import SocialsCard from "../(home)/_components/socials-card";
 import ContactCard from "../(home)/_components/contact-card";
 import { Mouse } from "lucide-react";
 
-export default function MotionGrid() {
+export default function HomePage() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  const [isGrid, setIsGrid] = useState(false);
+  const { persistedProgress, setPersistedProgress } = useAnimation();
+  const [isGrid, setIsGrid] = useState(persistedProgress > 0.2);
 
-  const setIsGridCallback = useCallback((progress: number) => {
-    const shouldBeGrid = progress > 0.2;
-    setIsGrid((prev) => (prev !== shouldBeGrid ? shouldBeGrid : prev));
-  }, []);
+  const setIsGridCallback = useCallback(
+    (progress: number) => {
+      if (progress > persistedProgress) {
+        setPersistedProgress(progress);
+      }
+
+      const shouldBeGrid = progress > 0.2;
+      setIsGrid(shouldBeGrid);
+    },
+    [persistedProgress, setPersistedProgress]
+  );
+
+  useEffect(() => {
+    if (persistedProgress > 0.2) {
+      setIsGrid(true);
+
+      const scrollPosition =
+        persistedProgress *
+        (document.documentElement.scrollHeight - window.innerHeight);
+      window.scrollTo({ top: scrollPosition, behavior: "instant" });
+    }
+  }, [persistedProgress]);
 
   useEffect(() => {
     const unsubscribe = scrollYProgress.on("change", setIsGridCallback);
@@ -76,7 +96,10 @@ export default function MotionGrid() {
   const MotionContactCard = useMemo(() => motion(ContactCard), []);
 
   return (
-    <div ref={containerRef} className="min-h-[200vh] relative">
+    <div
+      ref={containerRef}
+      className="min-h-[200vh] relative max-w-[110rem] mx-auto"
+    >
       {!isGrid && (
         <div className="fixed inset-0 flex items-center justify-center z-10">
           <div className="relative">
@@ -99,7 +122,7 @@ export default function MotionGrid() {
 
       {isGrid && (
         <motion.div
-          className="fixed inset-0"
+          className="fixed inset-0 max-w-[110rem] mx-auto"
           variants={containerVariants}
           initial="hidden"
           animate="visible"

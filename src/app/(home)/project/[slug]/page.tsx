@@ -13,7 +13,7 @@ import { LinkedinIcon } from "@/components/icons/linkedin";
 const projects = [
   {
     key: "gym-fit",
-    title: "Gym Fit",
+    title: "Gym Fit API",
     description:
       "Application de fitness moderne avec suivi des entraînements et analyses détaillées.",
     images: [
@@ -28,17 +28,12 @@ const projects = [
     ],
     skills: [
       "React",
+      "Next.js",
       "TypeScript",
+      "Prisma",
       "Node.js",
-      "MongoDB",
-      "React",
-      "TypeScript",
-      "Node.js",
-      "MongoDB",
-      "React",
-      "TypeScript",
-      "Node.js",
-      "MongoDB",
+      "NestJS",
+      "PostrgreSQL",
     ],
     url: siteConfig.projects.gymFit,
   },
@@ -49,15 +44,15 @@ const projects = [
       "Plateforme de formation en ligne avec gestion des cours et suivi des progrès.",
     images: [
       {
-        src: "/gym-fit-1.png",
-        alt: "Gym Fit illustration 1",
+        src: "/forminotion-1.png",
+        alt: "Forminotion illustration 1",
       },
       {
-        src: "/gym-fit-2.png",
-        alt: "Gym Fit illustration 2",
+        src: "/forminotion-2.png",
+        alt: "Forminotion illustration 2",
       },
     ],
-    skills: ["Next.js", "Prisma", "PostgreSQL", "Tailwind CSS"],
+    skills: ["React", "Tailwind CSS"],
     url: "https://forminotion.example.com",
   },
   {
@@ -67,11 +62,11 @@ const projects = [
     images: [
       {
         src: "/gym-fit-1.png",
-        alt: "Gym Fit illustration 1",
+        alt: "Thumbly illustration 1",
       },
       {
         src: "/gym-fit-2.png",
-        alt: "Gym Fit illustration 2",
+        alt: "Thumbly illustration 2",
       },
     ],
     skills: ["Vue.js", "Python", "OpenAI API", "AWS"],

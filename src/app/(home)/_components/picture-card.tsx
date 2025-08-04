@@ -22,7 +22,7 @@ const PictureCard = forwardRef<
           src="/profile-picture.png"
           alt="Picture of me"
           fill
-          className="object-cover"
+          className="object-cover scale-125"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           priority
         />

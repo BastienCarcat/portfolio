@@ -1,3 +1,4 @@
+import SquareCross from "@/components/shapes/square-cross";
 import { BentoCard } from "@/components/ui/bento-grid";
 import { forwardRef } from "react";
 
@@ -10,6 +11,9 @@ const DescriptionCard = forwardRef<
       ref={ref}
       className="lg:col-span-4 col-span-12 lg:row-span-4 pl-11 pr-32"
     >
+      <div className="absolute top-5 flex items-center flex-col left-10">
+        <SquareCross size={80} />
+      </div>
       <div className="flex h-full items-end">
         <p className="font-satoshi text-lg">
           J’ai commencé le développement par curiosité, j’y suis resté par

@@ -1,41 +1,35 @@
 export const siteConfig = {
   // Site Metadata
   metadata: {
-    title: "Bastien - Développeur front-end",
+    title: "Bastien CARCAT - Développeur React/Next.js Freelance",
     description:
-      "Portfolio de Bastien, développeur front-end spécialisé en React, Next.js et TypeScript",
-    author: "Bastien",
+      "Portfolio de Bastien CARCAT, développeur front-end spécialisé en React et Next.js",
+    author: "Bastien CARCAT",
     keywords: [
       "développeur",
+      "freelance",
       "front end",
       "React",
       "Next.js",
       "TypeScript",
       "portfolio",
     ],
-    url: "https://votre-domaine.com",
+    url: "https://www.bastien-carcat.dev",
     image: "/profile-picture.png",
   },
 
   // Contact Information
   contact: {
     email: "bastien-carcat@orange.fr",
-    callBooking: "https://calendar.notion.so/meet/bastiencrct/point-projet",
+    callBooking: "https://taap.it/XsEg4X",
   },
 
   // Social Links
   social: {
     github: "https://github.com/BastienCarcat",
     linkedin: "https://www.linkedin.com/in/bastien-carcat-1a8707175",
-    malt: "https://malt.fr/profile/bastiencarcat",
+    malt: "https://taap.it/RtWUMB",
     x: "https://x.com/BastienCrct",
-  },
-
-  // Personal Information
-  personal: {
-    name: "Bastien",
-    title: "Développeur Full Stack",
-    description: "Développeur passionné par les technologies web modernes",
   },
 
   // External Services
@@ -45,7 +39,10 @@ export const siteConfig = {
 
   projects: {
     gymFit: "https://www.gymfit-api.com/",
+    forminotion:
+      "https://github.com/BastienCarcat/forminotion-web-app/tree/master",
+    thumbly: "https://github.com/BastienCarcat/thumbly",
   },
-} as const;
+};
 
 export type SiteConfig = typeof siteConfig;

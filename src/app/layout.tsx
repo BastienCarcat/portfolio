@@ -6,19 +6,19 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: siteConfig.metadata.title,
   description: siteConfig.metadata.description,
-  // keywords: siteConfig.metadata.keywords,
+  keywords: siteConfig.metadata.keywords,
   authors: [{ name: siteConfig.metadata.author }],
   openGraph: {
     title: siteConfig.metadata.title,
     description: siteConfig.metadata.description,
     url: siteConfig.metadata.url,
-    siteName: siteConfig.personal.name,
+    siteName: siteConfig.metadata.title,
     images: [
       {
         url: siteConfig.metadata.image,
         width: 800,
         height: 600,
-        alt: siteConfig.personal.name,
+        alt: siteConfig.metadata.title,
       },
     ],
     locale: "fr_FR",

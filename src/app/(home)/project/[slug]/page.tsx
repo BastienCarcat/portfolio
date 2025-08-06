@@ -54,7 +54,7 @@ const projects = [
       },
     ],
     skills: ["React", "Tailwind CSS", "react-final-form", "react-dnd", "auth0"],
-    url: "https://github.com/BastienCarcat/forminotion-web-app/tree/master",
+    url: siteConfig.projects.forminotion,
   },
   {
     key: "thumbly",
@@ -79,7 +79,7 @@ const projects = [
       "Supabase",
       "S3 Storage",
     ],
-    url: "https://github.com/BastienCarcat/thumbly",
+    url: siteConfig.projects.thumbly,
   },
 ];
 

@@ -15,7 +15,7 @@ const projects = [
     key: "gym-fit",
     title: "Gym Fit API",
     description:
-      "Application de fitness moderne avec suivi des entraînements et analyses détaillées.",
+      "Lors de mes études, j'ai développé une app de suivi d'entrainements de musculation et j'ai rapidement été confronté à un défi de taille : rassembler et structurer des centaines d'exercices, leurs variantes, les groupes musculaires ciblés... Un travail de titan qui freine l'innovation. GymFit API résout ce problème en proposant une base de données complète et des outils de calcul, permettant aux développeurs de se concentrer sur ce qui compte vraiment : l'expérience utilisateur.",
     images: [
       {
         src: "/gym-fit-1.png",
@@ -34,6 +34,7 @@ const projects = [
       "Node.js",
       "NestJS",
       "PostrgreSQL",
+      "S3 Storage",
     ],
     url: siteConfig.projects.gymFit,
   },
@@ -41,7 +42,7 @@ const projects = [
     key: "forminotion",
     title: "Forminotion",
     description:
-      "Plateforme de formation en ligne avec gestion des cours et suivi des progrès.",
+      "Ma pratique intensive de Notion et la création de templates m'ont révélé un manque criant : comment capturer efficacement des données externes pour alimenter ses bases ? Les utilisateurs transforment Notion en CRM performant mais restent démunis pour créer des formulaires de contact, d'inscription ou de leads. Forminotion résout cette équation en générant des formulaires embarquables qui synchronisent automatiquement avec vos modèles Notion existants.",
     images: [
       {
         src: "/forminotion-1.png",
@@ -52,25 +53,33 @@ const projects = [
         alt: "Forminotion illustration 2",
       },
     ],
-    skills: ["React", "Tailwind CSS"],
-    url: "https://forminotion.example.com",
+    skills: ["React", "Tailwind CSS", "react-final-form", "react-dnd", "auth0"],
+    url: "https://github.com/BastienCarcat/forminotion-web-app/tree/master",
   },
   {
     key: "thumbly",
     title: "Thumbly",
-    description: "Outil de création de miniatures YouTube avec IA intégrée.",
+    description:
+      "En expérimentant avec le dernier modèle de génération d'images d'OpenAI, j'ai été frappé par sa capacité à produire des visuels professionnels en quelques secondes. Une évidence s'est imposée : pourquoi ne pas l'appliquer aux miniatures YouTube ? Sachant l'impact crucial de la thumbnail sur le taux de clic d'une vidéo, Thumbly est né de cette révélation, permettant aux créateurs de générer instantanément des miniatures accrocheuses et professionnelles.",
     images: [
       {
-        src: "/gym-fit-1.png",
+        src: "/thumbly-1.png",
         alt: "Thumbly illustration 1",
       },
       {
-        src: "/gym-fit-2.png",
+        src: "/thumbly-2.png",
         alt: "Thumbly illustration 2",
       },
     ],
-    skills: ["Vue.js", "Python", "OpenAI API", "AWS"],
-    url: "https://thumbly.example.com",
+    skills: [
+      "React",
+      "Next.js",
+      "Typescript",
+      "Prisma",
+      "Supabase",
+      "S3 Storage",
+    ],
+    url: "https://github.com/BastienCarcat/thumbly",
   },
 ];
 

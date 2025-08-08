@@ -12,7 +12,7 @@ export enum Breakpoint {
 }
 
 export function useBreakpoint() {
-  const [breakpoint, setBreakpoint] = useState<Breakpoint>(Breakpoint.Md);
+  const [breakpoint, setBreakpoint] = useState<Breakpoint>(Breakpoint.Lg);
 
   useEffect(() => {
     const checkBreakpoint = () => {

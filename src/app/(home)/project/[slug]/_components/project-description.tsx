@@ -13,12 +13,12 @@ export default function ProjectDescription({
   url,
 }: ProjectDescriptionProps) {
   return (
-    <BentoCard className="col-span-12 lg:col-span-4 lg:row-span-5 px-6 lg:pl-11 lg:pr-12 xl:pr-24 py-6 lg:py-8 xl:py-12">
-      <div className="flex sm:flex-row flex-col sm:items-end gap-4">
-        <p className="font-satoshi text-sm sm:text-base lg:text-md xl:text-lg">
+    <BentoCard className="col-span-12 px-6 py-6 lg:col-span-4 lg:row-span-5 lg:py-8 lg:pr-12 lg:pl-11 xl:py-12 xl:pr-24">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end">
+        <p className="font-satoshi lg:text-md text-sm sm:text-base xl:text-lg">
           {description}
         </p>
-        <Button asChild variant="portfolio" className="sm:hidden flex">
+        <Button asChild variant="portfolio" className="flex sm:hidden">
           <Link href={url} target="_blank" rel="noopener">
             Visiter
             <SquareArrowOutUpRight className="h-5 w-5" />

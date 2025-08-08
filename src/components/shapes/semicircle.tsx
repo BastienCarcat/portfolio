@@ -4,10 +4,10 @@ interface SemicircleProps {
   fill?: string;
 }
 
-export default function Semicircle({ 
-  size = 100, 
-  className = "", 
-  fill = "currentColor" 
+export default function Semicircle({
+  size = 100,
+  className = "",
+  fill = "currentColor",
 }: SemicircleProps) {
   return (
     <svg

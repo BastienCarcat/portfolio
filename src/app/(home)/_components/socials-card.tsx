@@ -2,6 +2,8 @@ import { LinkedinIcon } from "@/components/icons/linkedin";
 import { BentoCard } from "@/components/ui/bento-grid";
 import { siteConfig } from "@/config/site";
 import { Breakpoint, useBreakpoint } from "@/hooks/use-breakpoint";
+import Image from "next/image";
+import Link from "next/link";
 import { forwardRef, JSX, useMemo } from "react";
 
 type Icon = {
@@ -30,11 +32,11 @@ const SocialsCard = forwardRef<
         name: "linkedin",
         href: siteConfig.social.linkedin,
         icon: (
-          <LinkedinIcon className="lg:w-8 lg:h-8 md:w-7 md:h-7 w-6 h-6 text-secondary" />
+          <LinkedinIcon className="text-secondary h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8" />
         ),
       },
     ],
-    []
+    [],
   );
 
   const iconSize = useMemo(() => {
@@ -52,11 +54,11 @@ const SocialsCard = forwardRef<
   return (
     <BentoCard
       ref={ref}
-      className="col-span-12 lg:col-span-4 lg:row-span-1 lg:py-2 py-4 md:py-6"
+      className="col-span-12 py-4 md:py-6 lg:col-span-4 lg:row-span-1 lg:py-2"
     >
-      <div className="flex items-center h-full gap-8 md:gap-16 lg:gap-12 justify-center">
+      <div className="flex h-full items-center justify-center gap-8 md:gap-16 lg:gap-12">
         {icons.map((icon, i) => (
-          <a
+          <Link
             className="hover:scale-110"
             key={i}
             href={icon.href}
@@ -67,14 +69,15 @@ const SocialsCard = forwardRef<
             {!!icon.icon ? (
               icon.icon
             ) : (
-              <img
+              <Image
+                alt={`${icon.name} social icon`}
                 height={iconSize}
                 width={iconSize}
-                className="lg:w-8 lg:h-8 md:w-7 md:h-7 w-6 h-6"
+                className="h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8"
                 src={`${siteConfig.external.simpleIcons}/${icon.name}/a8977b`}
               />
             )}
-          </a>
+          </Link>
         ))}
       </div>
     </BentoCard>

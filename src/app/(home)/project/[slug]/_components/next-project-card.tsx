@@ -24,14 +24,14 @@ export default function NextProjectCard({
 
   return (
     <BentoCard
-      className="lg:col-span-4 sm:col-span-6 col-span-12 lg:row-span-1 py-4 cursor-pointer font-kaisei"
+      className="font-kaisei col-span-12 cursor-pointer py-4 sm:col-span-6 lg:col-span-4 lg:row-span-1"
       onClick={handleNextProject}
     >
-      <div className="flex justify-between h-full items-center">
+      <div className="flex h-full items-center justify-between">
         <span className="text-xl sm:text-2xl lg:text-4xl">
           {nextProject.title}
         </span>
-        <MoveRight className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10" />
+        <MoveRight className="h-6 w-6 sm:h-8 sm:w-8 lg:h-10 lg:w-10" />
       </div>
     </BentoCard>
   );

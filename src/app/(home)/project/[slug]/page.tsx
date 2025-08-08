@@ -9,6 +9,8 @@ import ProjectSkills from "./_components/project-skills";
 import NextProjectCard from "./_components/next-project-card";
 import { siteConfig } from "@/config/site";
 import { LinkedinIcon } from "@/components/icons/linkedin";
+import Image from "next/image";
+import Link from "next/link";
 
 const projects = [
   {
@@ -107,11 +109,11 @@ export default async function ProjectPage({
     {
       name: "linkedin",
       href: siteConfig.social.linkedin,
-      icon: <LinkedinIcon className="w-6 h-6 sm:w-8 sm:h-8 text-secondary" />,
+      icon: <LinkedinIcon className="text-secondary h-6 w-6 sm:h-8 sm:w-8" />,
     },
   ];
   return (
-    <BentoGrid className="h-screen p-5 lg:grid-rows-10 will-change-transform overflow-auto">
+    <BentoGrid className="h-screen overflow-auto p-5 will-change-transform lg:grid-rows-10">
       <BackButton />
       <ProjectTitle title={project.title} />
       <VisitProjectButton url={project.url} />
@@ -119,10 +121,10 @@ export default async function ProjectPage({
       <ProjectImages images={project.images} />
       <ProjectSkills skills={project.skills} />
       <NextProjectCard currentProjectKey={project.key} projects={projects} />
-      <BentoCard className="col-span-12 sm:col-span-6 lg:col-span-4 lg:row-span-1 py-4">
-        <div className="flex items-center h-full gap-6 sm:gap-8 lg:gap-12 justify-center">
+      <BentoCard className="col-span-12 py-4 sm:col-span-6 lg:col-span-4 lg:row-span-1">
+        <div className="flex h-full items-center justify-center gap-6 sm:gap-8 lg:gap-12">
           {icons.map((icon, i) => (
-            <a
+            <Link
               className="hover:scale-110"
               key={i}
               href={icon.href}
@@ -133,14 +135,15 @@ export default async function ProjectPage({
               {!!icon.icon ? (
                 icon.icon
               ) : (
-                <img
+                <Image
+                  alt={`${icon.name} social icon`}
                   height="24"
                   width="24"
                   className="sm:h-8 sm:w-8"
                   src={`${siteConfig.external.simpleIcons}/${icon.name}/a8977b`}
                 />
               )}
-            </a>
+            </Link>
           ))}
         </div>
       </BentoCard>

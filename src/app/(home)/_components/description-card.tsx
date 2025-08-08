@@ -23,13 +23,13 @@ const DescriptionCard = forwardRef<
   return (
     <BentoCard
       ref={ref}
-      className="col-span-12 lg:col-span-4 lg:row-span-4 px-6 lg:pl-11 xs:pr-14 sm:pr-32 lg:pr-18 xl:pr-30"
+      className="xs:pr-14 col-span-12 px-6 sm:pr-32 lg:col-span-4 lg:row-span-4 lg:pr-18 lg:pl-11 xl:pr-30"
     >
-      <div className="absolute top-2 lg:top-3 xl:top-5 flex items-center flex-col lg:left-8 xl:left-10">
+      <div className="absolute top-2 flex flex-col items-center lg:top-3 lg:left-8 xl:top-5 xl:left-10">
         <SquareCross size={iconSize} />
       </div>
-      <div className="flex h-full items-end min-h-58 xs:min-h-48 sm:min-h-40">
-        <p className="font-satoshi text-base lg:text-md xl:text-lg">
+      <div className="xs:min-h-48 flex h-full min-h-58 items-end sm:min-h-40">
+        <p className="font-satoshi lg:text-md text-base xl:text-lg">
           J’ai commencé le développement par curiosité, j’y suis resté par
           passion. Ce qui m’anime aujourd’hui, c’est de créer des interfaces qui
           font la différence : belles, rapides, faciles à maintenir. J’ai

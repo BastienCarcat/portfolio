@@ -1,7 +1,6 @@
 import { BentoCard } from "@/components/ui/bento-grid";
 import { forwardRef, useMemo, useState } from "react";
-import { ArrowRight, ArrowUpRight, MoveRight } from "lucide-react";
-import { motion } from "motion/react";
+import { ArrowUpRight, MoveRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 const ProjectsCard = forwardRef<
@@ -27,12 +26,12 @@ const ProjectsCard = forwardRef<
   return (
     <BentoCard
       ref={ref}
-      className="col-span-12 lg:col-span-4 lg:row-span-8 font-kaisei px-4 lg:px-7"
+      className="font-kaisei col-span-12 px-4 lg:col-span-4 lg:row-span-8 lg:px-7"
     >
       <ul>
         {projects.map((project, i) => (
           <li
-            className="py-4 lg:py-8 px-4 group relative hover:cursor-none rounded-lg hover:bg-secondary hover:text-secondary-foreground"
+            className="group hover:bg-secondary hover:text-secondary-foreground relative rounded-lg px-4 py-4 hover:cursor-none lg:py-8"
             key={i}
             onClick={() => handleProjectClick(project.key)}
             onMouseEnter={(e) => {
@@ -44,9 +43,9 @@ const ProjectsCard = forwardRef<
               setCursorPosition({ x: e.clientX, y: e.clientY });
             }}
           >
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <span className="text-2xl lg:text-4xl">{project.name}</span>
-              <MoveRight className="w-6 h-6 lg:w-10 lg:h-10" />
+              <MoveRight className="h-6 w-6 lg:h-10 lg:w-10" />
             </div>
 
             {/* <motion.div
@@ -62,10 +61,10 @@ const ProjectsCard = forwardRef<
 
             {hoveredIndex === project.id && (
               <div
-                className="custom-cursor fixed w-14 h-14 bg-secondary-foreground rounded-full flex items-center justify-center pointer-events-none z-50 transform -translate-x-1/2 -translate-y-1/2"
+                className="custom-cursor bg-secondary-foreground pointer-events-none fixed z-50 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-full"
                 style={{ left: cursorPosition.x, top: cursorPosition.y }}
               >
-                <ArrowUpRight className="w-8 h-8 text-secondary" />
+                <ArrowUpRight className="text-secondary h-8 w-8" />
               </div>
             )}
           </li>

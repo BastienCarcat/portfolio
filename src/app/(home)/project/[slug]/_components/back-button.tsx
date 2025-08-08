@@ -4,9 +4,9 @@ import { ArrowLeft } from "lucide-react";
 
 export default function BackButton() {
   return (
-    <BentoCard className="p-0 col-span-3 sm:col-span-2 lg:col-span-1 lg:row-span-2 min-h-24 sm:min-h-28 lg:min-h-32 hover:bg-secondary transition-colors cursor-pointer">
-      <Link href="/" className="h-full flex items-center justify-center">
-        <ArrowLeft className="w-7 h-7 sm:w-8 sm:h-8 group-hover:text-secondary-foreground transition-colors" />
+    <BentoCard className="hover:bg-secondary col-span-3 min-h-24 cursor-pointer p-0 transition-colors sm:col-span-2 sm:min-h-28 lg:col-span-1 lg:row-span-2 lg:min-h-32">
+      <Link href="/" className="flex h-full items-center justify-center">
+        <ArrowLeft className="group-hover:text-secondary-foreground h-7 w-7 transition-colors sm:h-8 sm:w-8" />
       </Link>
     </BentoCard>
   );

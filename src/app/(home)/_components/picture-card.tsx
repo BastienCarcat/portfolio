@@ -13,16 +13,16 @@ const PictureCard = forwardRef<
     <BentoCard
       ref={ref}
       className={cn(
-        "col-span-12 lg:col-span-3 lg:row-span-5 overflow-hidden p-0",
-        className
+        "col-span-12 overflow-hidden p-0 lg:col-span-3 lg:row-span-5",
+        className,
       )}
     >
-      <div className="relative w-full h-full aspect-[3/4]">
+      <div className="relative aspect-[3/4] h-full w-full">
         <Image
           src="/profile-picture.png"
           alt="Picture of me"
           fill
-          className="object-cover scale-125"
+          className="scale-125 object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           priority
         />

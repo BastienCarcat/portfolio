@@ -15,7 +15,7 @@ const TitleCard = forwardRef<
   const shapeIteration = useCallback(
     (index: number) => {
       let initialSize = 30;
-      let initialDelay = NUMBER_OF_SHAPES * 0.1;
+      const initialDelay = NUMBER_OF_SHAPES * 0.1;
       switch (breakpoint) {
         case Breakpoint.Xl:
         case Breakpoint.Xxl:
@@ -36,15 +36,15 @@ const TitleCard = forwardRef<
         delay: initialDelay - index * 0.1,
       };
     },
-    [breakpoint, NUMBER_OF_SHAPES]
+    [breakpoint],
   );
 
   return (
     <BentoCard
       ref={ref}
-      className="col-span-12 lg:col-span-5 lg:row-span-5 px-4 py-6 lg:pl-11 pr-20 md:pr-18 xl:pr-32 font-kaisei"
+      className="font-kaisei col-span-12 px-4 py-6 pr-20 md:pr-18 lg:col-span-5 lg:row-span-5 lg:pl-11 xl:pr-32"
     >
-      <div className="absolute top-6 lg:top-8 xl:top-10 flex items-center flex-col right-4 lg:right-9 xl:right-15">
+      <div className="absolute top-6 right-4 flex flex-col items-center lg:top-8 lg:right-9 xl:top-10 xl:right-15">
         {Array(NUMBER_OF_SHAPES)
           .fill("")
           .map((_, index) => (
@@ -64,13 +64,13 @@ const TitleCard = forwardRef<
           ))}
       </div>
 
-      <div className="flex items-end h-full">
-        <p className="text-3xl lg:text-5xl xl:text-6xl lg:leading-13 xl:leading-16">
-          Développeur d'interfaces web <br className="hidden md:block" />
-          <span className="italic font-light mr-1 lg:mr-2">
+      <div className="flex h-full items-end">
+        <p className="text-3xl lg:text-5xl lg:leading-13 xl:text-6xl xl:leading-16">
+          Développeur d&apos;interfaces web <br className="hidden md:block" />
+          <span className="mr-1 font-light italic lg:mr-2">
             modernes{" "}
           </span> et{" "}
-          <span className="italic font-light mr-1 lg:mr-2">performantes</span>
+          <span className="mr-1 font-light italic lg:mr-2">performantes</span>
         </p>
       </div>
     </BentoCard>

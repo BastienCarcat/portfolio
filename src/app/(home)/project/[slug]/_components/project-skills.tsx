@@ -6,19 +6,19 @@ interface ProjectSkillsProps {
 
 export default function ProjectSkills({ skills }: ProjectSkillsProps) {
   return (
-    <BentoCard className="col-span-12 lg:col-span-4 lg:row-span-3  p-6">
+    <BentoCard className="col-span-12 p-6 lg:col-span-4 lg:row-span-3">
       <div>
-        <h2 className="text-lg sm:text-xl lg:text-2xl italic font-kaisei font-semibold mb-4 sm:mb-6 lg:mb-8">
+        <h2 className="font-kaisei mb-4 text-lg font-semibold italic sm:mb-6 sm:text-xl lg:mb-8 lg:text-2xl">
           Compétences
         </h2>
         <div className="flex flex-wrap gap-3">
           {skills.map((skill, index) => (
             <span
               key={index}
-              className="relative overflow-hidden px-3 sm:px-4 lg:px-5 py-1 sm:py-2 bg-secondary text-secondary-foreground rounded-full text-xs sm:text-sm lg:text-md font-semibold group/skill"
+              className="bg-secondary text-secondary-foreground lg:text-md group/skill relative overflow-hidden rounded-full px-3 py-1 text-xs font-semibold sm:px-4 sm:py-2 sm:text-sm lg:px-5"
             >
               <span className="relative z-20">{skill}</span>
-              <span className="absolute w-[25px] h-[110px] bg-white/70 opacity-50 -top-[50px] -left-[75px] rotate-[35deg] transition-all duration-[550ms] ease-out z-10 group-hover/skill:left-[125%]"></span>
+              <span className="absolute -top-[50px] -left-[75px] z-10 h-[110px] w-[25px] rotate-[35deg] bg-white/70 opacity-50 transition-all duration-[550ms] ease-out group-hover/skill:left-[125%]"></span>
             </span>
           ))}
         </div>

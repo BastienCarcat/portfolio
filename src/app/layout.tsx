@@ -40,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${literata.variable} ${satoshi.variable} ${satoshiVariable.variable} ${KaiseiDecol.variable} bg-background font-satoshi antialiased min-h-screen`}
+        className={`${literata.variable} ${satoshi.variable} ${satoshiVariable.variable} ${KaiseiDecol.variable} bg-background font-satoshi min-h-screen antialiased`}
       >
         {children}
       </body>

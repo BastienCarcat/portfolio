@@ -25,8 +25,8 @@ export default function ProjectImages({ images }: ProjectImagesProps) {
   };
 
   return (
-    <BentoCard className="col-span-12 lg:col-span-8 lg:row-span-7 min-h-96 p-0">
-      <div className="h-full relative rounded-xl overflow-hidden group">
+    <BentoCard className="col-span-12 min-h-96 p-0 lg:col-span-8 lg:row-span-7">
+      <div className="group relative h-full overflow-hidden rounded-xl">
         <Image
           src={images[currentIndex].src}
           alt={images[currentIndex].alt}
@@ -38,32 +38,32 @@ export default function ProjectImages({ images }: ProjectImagesProps) {
 
         <button
           onClick={prevImage}
-          className="absolute group/button-left cursor-pointer left-0 top-0 w-1/2 h-full flex items-center justify-start pl-4 text-gray-600/70 hover:text-gray-600  transition-colors"
+          className="group/button-left absolute top-0 left-0 flex h-full w-1/2 cursor-pointer items-center justify-start pl-4 text-gray-600/70 transition-colors hover:text-gray-600"
           aria-label="Image précédente"
         >
           <ChevronLeft
             size={32}
-            className="opacity-0 group-hover:opacity-100 transition-opacity group-hover/button-left:scale-125"
+            className="opacity-0 transition-opacity group-hover:opacity-100 group-hover/button-left:scale-125"
           />
         </button>
 
         <button
           onClick={nextImage}
-          className="absolute group/button-right cursor-pointer right-0 top-0 w-1/2 h-full flex items-center justify-end pr-4 text-gray-600/70 hover:text-gray-600 transition-colors"
+          className="group/button-right absolute top-0 right-0 flex h-full w-1/2 cursor-pointer items-center justify-end pr-4 text-gray-600/70 transition-colors hover:text-gray-600"
           aria-label="Image suivante"
         >
           <ChevronRight
             size={32}
-            className="opacity-0 group-hover:opacity-100 transition-opacity group-hover/button-right:scale-125"
+            className="opacity-0 transition-opacity group-hover:opacity-100 group-hover/button-right:scale-125"
           />
         </button>
 
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
           {images.map((_, index) => (
             <button
               key={index}
               onClick={() => goToImage(index)}
-              className={`w-2 cursor-pointer h-2 rounded-full transition-colors ${
+              className={`h-2 w-2 cursor-pointer rounded-full transition-colors ${
                 index === currentIndex
                   ? "bg-gray-600"
                   : "bg-gray-500/50 hover:bg-gray-600/70"

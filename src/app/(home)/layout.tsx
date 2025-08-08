@@ -7,7 +7,7 @@ export default function HomeLayout({
 }>) {
   return (
     <AnimationProvider>
-      <main className="overflow-hidden max-w-[110rem] mx-auto">{children}</main>
+      <main className="mx-auto max-w-[110rem] overflow-hidden">{children}</main>
     </AnimationProvider>
   );
 }

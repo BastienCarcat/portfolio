@@ -5,9 +5,7 @@ import {
   useContext,
   useState,
   ReactNode,
-  useEffect,
 } from "react";
-import { usePathname } from "next/navigation";
 
 interface AnimationContextType {
   persistedProgress: number;
@@ -15,7 +13,7 @@ interface AnimationContextType {
 }
 
 const AnimationContext = createContext<AnimationContextType | undefined>(
-  undefined
+  undefined,
 );
 
 export function AnimationProvider({ children }: { children: ReactNode }) {

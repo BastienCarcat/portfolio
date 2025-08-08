@@ -10,7 +10,6 @@ export default function SquareCross({
   stroke = "currentColor",
 }: SquareCrossProps) {
   const scale = size / 100;
-  const center = 50;
 
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" className={className}>

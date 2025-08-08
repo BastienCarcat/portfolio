@@ -17,7 +17,8 @@ import { Mouse } from "lucide-react";
 export default function HomePage() {
   const containerRef = useRef(null);
   const breakpoint = useBreakpoint();
-  const isMobile = breakpoint === 'xs' || breakpoint === 'sm' || breakpoint === 'md';
+  const isMobile =
+    breakpoint === "xs" || breakpoint === "sm" || breakpoint === "md";
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -31,7 +32,7 @@ export default function HomePage() {
       if (isMobile) {
         return;
       }
-      
+
       if (progress > persistedProgress) {
         setPersistedProgress(progress);
       }
@@ -39,7 +40,7 @@ export default function HomePage() {
       const shouldBeGrid = progress > 0.2;
       setIsGrid(shouldBeGrid);
     },
-    [persistedProgress, setPersistedProgress, isMobile]
+    [persistedProgress, setPersistedProgress, isMobile],
   );
 
   useEffect(() => {
@@ -47,7 +48,7 @@ export default function HomePage() {
       setIsGrid(true);
       return;
     }
-    
+
     if (persistedProgress > 0.2) {
       setIsGrid(true);
 
@@ -80,7 +81,7 @@ export default function HomePage() {
         },
       },
     }),
-    []
+    [],
   );
 
   const containerVariants = useMemo(
@@ -96,7 +97,7 @@ export default function HomePage() {
         },
       },
     }),
-    []
+    [],
   );
 
   const MotionHeaderCard = useMemo(() => motion(HeaderCard), []);
@@ -110,15 +111,15 @@ export default function HomePage() {
   return (
     <div
       ref={containerRef}
-      className={`${isMobile ? 'min-h-screen' : 'min-h-[200vh]'} relative max-w-[110rem] mx-auto`}
+      className={`${isMobile ? "min-h-screen" : "min-h-[200vh]"} relative mx-auto max-w-[110rem]`}
     >
       {!isGrid && (
-        <div className="fixed inset-0 flex items-center justify-center z-10">
+        <div className="fixed inset-0 z-10 flex items-center justify-center">
           <div className="relative">
             <MotionPictureCard
               layoutId="picture"
               layout
-              className="scale-110 lg:scale-150 pointer-events-auto !col-span-auto !row-span-auto w-64 h-80 lg:w-80 lg:h-96"
+              className="!col-span-auto !row-span-auto pointer-events-auto h-80 w-64 scale-110 lg:h-96 lg:w-80 lg:scale-150"
               transition={{
                 layout: {
                   duration: 0.5,
@@ -127,19 +128,19 @@ export default function HomePage() {
               }}
             />
 
-            <Mouse className="h-6 w-6 lg:h-9 lg:w-9 absolute bottom-0 left-1/2 transform translate-y-32 lg:translate-y-48 -translate-x-1/2" />
+            <Mouse className="absolute bottom-0 left-1/2 h-6 w-6 -translate-x-1/2 translate-y-32 transform lg:h-9 lg:w-9 lg:translate-y-48" />
           </div>
         </div>
       )}
 
       {isGrid && (
         <motion.div
-          className={`${isMobile ? 'relative' : 'fixed inset-0'} max-w-[110rem] mx-auto`}
+          className={`${isMobile ? "relative" : "fixed inset-0"} mx-auto max-w-[110rem]`}
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          <BentoGrid className="h-auto lg:h-screen p-3 lg:p-5 grid-rows-none lg:grid-rows-10 will-change-transform">
+          <BentoGrid className="h-auto grid-rows-none p-3 will-change-transform lg:h-screen lg:grid-rows-10 lg:p-5">
             <AnimatePresence>
               <MotionHeaderCard
                 key="header"

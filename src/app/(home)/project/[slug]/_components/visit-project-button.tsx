@@ -1,5 +1,6 @@
 import { BentoCard } from "@/components/ui/bento-grid";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 interface VisitProjectButtonProps {
   url: string;
@@ -8,13 +9,13 @@ interface VisitProjectButtonProps {
 export default function VisitProjectButton({ url }: VisitProjectButtonProps) {
   return (
     <BentoCard
-      className="col-span-2 row-span-2 flex items-center justify-center"
+      className="md:col-span-2 lg:row-span-2 items-center justify-center sm:flex hidden"
       variant="secondary"
     >
-      <a
+      <Link
         href={url}
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener"
         className="group flex items-center justify-center w-full h-full rounded-lg transition-colors relative"
       >
         <div className="relative">
@@ -28,7 +29,7 @@ export default function VisitProjectButton({ url }: VisitProjectButtonProps) {
 
           <ArrowUpRight className="absolute -top-7 -right-7 w-24 h-24 stroke-[1] transition-transform duration-300 group-hover:translate-x-4 group-hover:-translate-y-4" />
         </div>
-      </a>
+      </Link>
     </BentoCard>
   );
 }

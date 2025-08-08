@@ -9,7 +9,7 @@ interface BentoGridProps extends ComponentPropsWithoutRef<"div"> {
 }
 
 const bentoCardVariants = cva(
-  "group relative overflow-hidden px-11 py-7 rounded-xl transform-gpu transition-colors",
+  "group relative px-11 py-7 rounded-xl transform-gpu transition-colors",
   {
     variants: {
       variant: {
@@ -40,7 +40,7 @@ interface BentoCardProps
 
 const BentoGrid = ({ children, className, ...props }: BentoGridProps) => {
   return (
-    <div className={cn("grid w-full grid-cols-1 lg:grid-cols-12 gap-4", className)} {...props}>
+    <div className={cn("grid w-full grid-cols-12 gap-4", className)} {...props}>
       {children}
     </div>
   );

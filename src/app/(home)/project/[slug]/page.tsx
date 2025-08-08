@@ -107,20 +107,20 @@ export default async function ProjectPage({
     {
       name: "linkedin",
       href: siteConfig.social.linkedin,
-      icon: <LinkedinIcon className="w-8 h-8 text-secondary" />,
+      icon: <LinkedinIcon className="w-6 h-6 sm:w-8 sm:h-8 text-secondary" />,
     },
   ];
   return (
-    <BentoGrid className="h-screen p-5 grid-rows-10 will-change-transform">
+    <BentoGrid className="h-screen p-5 lg:grid-rows-10 will-change-transform overflow-auto">
       <BackButton />
       <ProjectTitle title={project.title} />
       <VisitProjectButton url={project.url} />
-      <ProjectDescription description={project.description} />
+      <ProjectDescription description={project.description} url={project.url} />
       <ProjectImages images={project.images} />
       <ProjectSkills skills={project.skills} />
       <NextProjectCard currentProjectKey={project.key} projects={projects} />
-      <BentoCard className="lg:col-span-4 col-span-12 lg:row-span-1 py-2">
-        <div className="flex items-center h-full gap-12 justify-center">
+      <BentoCard className="col-span-12 sm:col-span-6 lg:col-span-4 lg:row-span-1 py-4">
+        <div className="flex items-center h-full gap-6 sm:gap-8 lg:gap-12 justify-center">
           {icons.map((icon, i) => (
             <a
               className="hover:scale-110"
@@ -134,8 +134,9 @@ export default async function ProjectPage({
                 icon.icon
               ) : (
                 <img
-                  height="32"
-                  width="32"
+                  height="24"
+                  width="24"
+                  className="sm:h-8 sm:w-8"
                   src={`${siteConfig.external.simpleIcons}/${icon.name}/a8977b`}
                 />
               )}

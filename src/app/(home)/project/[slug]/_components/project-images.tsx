@@ -25,7 +25,7 @@ export default function ProjectImages({ images }: ProjectImagesProps) {
   };
 
   return (
-    <BentoCard className="col-span-8 row-span-7 p-0">
+    <BentoCard className="col-span-12 lg:col-span-8 lg:row-span-7 min-h-96 p-0">
       <div className="h-full relative rounded-xl overflow-hidden group">
         <Image
           src={images[currentIndex].src}

@@ -13,6 +13,7 @@ export const KaiseiDecol = Kaisei_Decol({
   weight: ["400", "500", "700"],
   variable: "--font-kaisei",
   display: "swap",
+  fallback: ["serif"],
 });
 
 export const satoshi = localFont({

@@ -13,7 +13,7 @@ const PictureCard = forwardRef<
     <BentoCard
       ref={ref}
       className={cn(
-        "lg:col-span-3 col-span-12 lg:row-span-5 overflow-hidden p-0",
+        "col-span-12 lg:col-span-3 lg:row-span-5 overflow-hidden p-0",
         className
       )}
     >

@@ -27,12 +27,12 @@ const ProjectsCard = forwardRef<
   return (
     <BentoCard
       ref={ref}
-      className="lg:col-span-4 col-span-12 lg:row-span-8 font-kaisei px-7"
+      className="col-span-12 lg:col-span-4 lg:row-span-8 font-kaisei px-4 lg:px-7"
     >
       <ul>
         {projects.map((project, i) => (
           <li
-            className="py-8 px-4 group relative hover:cursor-none rounded-lg hover:bg-secondary hover:text-secondary-foreground"
+            className="py-4 lg:py-8 px-4 group relative hover:cursor-none rounded-lg hover:bg-secondary hover:text-secondary-foreground"
             key={i}
             onClick={() => handleProjectClick(project.key)}
             onMouseEnter={(e) => {
@@ -45,8 +45,8 @@ const ProjectsCard = forwardRef<
             }}
           >
             <div className="flex justify-between items-center">
-              <span className="text-4xl">{project.name}</span>
-              <MoveRight className="w-10 h-10" />
+              <span className="text-2xl lg:text-4xl">{project.name}</span>
+              <MoveRight className="w-6 h-6 lg:w-10 lg:h-10" />
             </div>
 
             {/* <motion.div

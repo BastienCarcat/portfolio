@@ -14,21 +14,23 @@ const ContactCard = forwardRef<
   return (
     <BentoCard
       ref={ref}
-      className="lg:col-span-4 col-span-12 lg:row-span-4 group cursor-pointer font-kaisei"
+      className="col-span-12 lg:col-span-4 lg:row-span-4 group cursor-pointer font-kaisei"
       variant="secondary"
       onClick={handleMailtoClick}
     >
-      <div className="flex h-full flex-col justify-between">
+      <div className="flex h-full flex-col justify-between min-h-32 md:min-h-44">
         <div className="flex justify-between items-start">
-          <p className="text-xl font-satoshi">Un projet en tête ?</p>
+          <p className="text-md md:text-lg lg:text-xl font-satoshi">
+            Un projet en tête ?
+          </p>
         </div>
 
-        <div className="text-6xl">
+        <div className="text-4xl md:text-5xl xl:text-6xl">
           Me <span className="italic">contacter</span>
         </div>
       </div>
 
-      <ArrowUpRight className="absolute top-2 right-2 w-24 h-24 stroke-[0.75] transition-transform duration-300 group-hover:translate-x-3 group-hover:-translate-y-3" />
+      <ArrowUpRight className="absolute top-2 right-2 w-18 h-18 md:w-20 md:h-20 lg:w-24 lg:h-24 stroke-[0.75] transition-transform duration-300 group-hover:translate-x-3 group-hover:-translate-y-3" />
     </BentoCard>
   );
 });

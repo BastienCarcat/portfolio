@@ -70,7 +70,7 @@ Motion-enabled components should:
 ## Best Practices
 
 - **Code Comments**:
-  - Write comments in code only if necessary
+  - Write comments in code only if necessary, always in english
 
 - **React Performance**:
   - Use native React hooks like useCallback and useMemo as soon as possible to improve performance

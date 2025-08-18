@@ -5,6 +5,12 @@ import { motion, useScroll, AnimatePresence } from "motion/react";
 import { useRef, useState, useEffect, useMemo, useCallback } from "react";
 import { useAnimation } from "@/lib/animation-context";
 import { useBreakpoint } from "@/hooks/use-breakpoint";
+import { use3DCardEffect } from "@/hooks/use-3d-card-effect";
+import {
+  cardVariants,
+  containerVariants,
+  layoutTransition,
+} from "@/lib/animation-variants";
 import HeaderCard from "../(home)/_components/header-card";
 import TitleCard from "../(home)/_components/title-card";
 import DescriptionCard from "../(home)/_components/description-card";
@@ -12,32 +18,48 @@ import PictureCard from "../(home)/_components/picture-card";
 import ProjectsCard from "../(home)/_components/projects-card";
 import SocialsCard from "../(home)/_components/socials-card";
 import ContactCard from "../(home)/_components/contact-card";
-import { Mouse } from "lucide-react";
+import ScrollDown from "@/components/ui/scroll-down";
+
+const SCROLL_THRESHOLD = 0.2;
+
+// Motion components - memoized outside component to prevent recreation
+const MotionHeaderCard = motion(HeaderCard);
+const MotionTitleCard = motion(TitleCard);
+const MotionDescriptionCard = motion(DescriptionCard);
+const MotionPictureCard = motion(PictureCard);
+const MotionProjectsCard = motion(ProjectsCard);
+const MotionSocialsCard = motion(SocialsCard);
+const MotionContactCard = motion(ContactCard);
 
 export default function HomePage() {
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const breakpoint = useBreakpoint();
-  const isMobile =
-    breakpoint === "xs" || breakpoint === "sm" || breakpoint === "md";
+  const isMobile = useMemo(
+    () => breakpoint === "xs" || breakpoint === "sm" || breakpoint === "md",
+    [breakpoint],
+  );
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
   const { persistedProgress, setPersistedProgress } = useAnimation();
-  const [isGrid, setIsGrid] = useState(persistedProgress > 0.2);
+  const [isGrid, setIsGrid] = useState(
+    () => persistedProgress > SCROLL_THRESHOLD,
+  );
+
+  const cardEffect = use3DCardEffect({ rotationIntensity: 10 });
 
   const setIsGridCallback = useCallback(
     (progress: number) => {
-      if (isMobile) {
-        return;
-      }
+      if (isMobile) return;
 
       if (progress > persistedProgress) {
         setPersistedProgress(progress);
       }
 
-      const shouldBeGrid = progress > 0.2;
+      const shouldBeGrid = progress > SCROLL_THRESHOLD;
       setIsGrid(shouldBeGrid);
     },
     [persistedProgress, setPersistedProgress, isMobile],
@@ -49,7 +71,7 @@ export default function HomePage() {
       return;
     }
 
-    if (persistedProgress > 0.2) {
+    if (persistedProgress > SCROLL_THRESHOLD) {
       setIsGrid(true);
 
       const scrollPosition =
@@ -64,78 +86,47 @@ export default function HomePage() {
     return () => unsubscribe();
   }, [scrollYProgress, setIsGridCallback]);
 
-  const cardVariants = useMemo(
-    () => ({
-      hidden: {
-        opacity: 0,
-        scale: 0.9,
-        y: 20,
-      },
-      visible: {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        transition: {
-          duration: 0.4,
-          ease: [0.22, 1, 0.36, 1] as const,
-        },
-      },
-    }),
-    [],
+  const containerClasses = useMemo(
+    () =>
+      `${isMobile ? "min-h-screen" : "min-h-[200vh]"} relative mx-auto max-w-[110rem]`,
+    [isMobile],
   );
 
-  const containerVariants = useMemo(
-    () => ({
-      hidden: {
-        opacity: 0,
-      },
-      visible: {
-        opacity: 1,
-        transition: {
-          staggerChildren: 0.05,
-          delayChildren: 0.1,
-        },
-      },
-    }),
-    [],
+  const gridClasses = useMemo(
+    () => `${isMobile ? "relative" : "fixed inset-0"} mx-auto max-w-[110rem]`,
+    [isMobile],
   );
-
-  const MotionHeaderCard = useMemo(() => motion(HeaderCard), []);
-  const MotionTitleCard = useMemo(() => motion(TitleCard), []);
-  const MotionDescriptionCard = useMemo(() => motion(DescriptionCard), []);
-  const MotionPictureCard = useMemo(() => motion(PictureCard), []);
-  const MotionProjectsCard = useMemo(() => motion(ProjectsCard), []);
-  const MotionSocialsCard = useMemo(() => motion(SocialsCard), []);
-  const MotionContactCard = useMemo(() => motion(ContactCard), []);
 
   return (
-    <div
-      ref={containerRef}
-      className={`${isMobile ? "min-h-screen" : "min-h-[200vh]"} relative mx-auto max-w-[110rem]`}
-    >
+    <div ref={containerRef} className={containerClasses}>
       {!isGrid && (
         <div className="fixed inset-0 z-10 flex items-center justify-center">
           <div className="relative">
-            <MotionPictureCard
-              layoutId="picture"
-              layout
-              className="!col-span-auto !row-span-auto pointer-events-auto h-80 w-64 scale-110 lg:h-96 lg:w-80 lg:scale-150"
-              transition={{
-                layout: {
-                  duration: 0.5,
-                  ease: [0.22, 1, 0.36, 1],
-                },
-              }}
-            />
-
-            <Mouse className="absolute bottom-0 left-1/2 h-6 w-6 -translate-x-1/2 translate-y-32 transform lg:h-9 lg:w-9 lg:translate-y-48" />
+            <div
+              ref={cardEffect.containerRef}
+              style={cardEffect.containerStyle}
+              onMouseEnter={cardEffect.onMouseEnter}
+              onMouseLeave={cardEffect.onMouseLeave}
+            >
+              <motion.div ref={cardEffect.ref} style={cardEffect.style}>
+                <MotionPictureCard
+                  layoutId="picture"
+                  layout
+                  className="!col-span-auto !row-span-auto pointer-events-auto h-80 w-64 scale-110 lg:h-96 lg:w-80 lg:scale-150"
+                  transition={layoutTransition}
+                />
+              </motion.div>
+            </div>
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-32 lg:translate-y-56">
+              <ScrollDown size="md" />
+            </div>
           </div>
         </div>
       )}
 
       {isGrid && (
         <motion.div
-          className={`${isMobile ? "relative" : "fixed inset-0"} mx-auto max-w-[110rem]`}
+          className={gridClasses}
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -161,12 +152,7 @@ export default function HomePage() {
               <MotionPictureCard
                 layoutId="picture"
                 layout
-                transition={{
-                  layout: {
-                    duration: 0.5,
-                    ease: [0.22, 1, 0.36, 1],
-                  },
-                }}
+                transition={layoutTransition}
               />
 
               <MotionProjectsCard

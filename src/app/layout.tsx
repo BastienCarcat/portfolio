@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { literata, satoshi, satoshiVariable, KaiseiDecol } from "@/lib/fonts";
 import { siteConfig } from "@/config/site";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -43,6 +44,7 @@ export default function RootLayout({
         className={`${literata.variable} ${satoshi.variable} ${satoshiVariable.variable} ${KaiseiDecol.variable} bg-background font-satoshi min-h-screen antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );

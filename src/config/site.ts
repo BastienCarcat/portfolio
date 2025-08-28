@@ -21,14 +21,14 @@ export const siteConfig = {
   // Contact Information
   contact: {
     email: "bastien-carcat@orange.fr",
-    callBooking: "https://taap.it/XsEg4X",
+    callBooking: "https://pim.ms/cal",
   },
 
   // Social Links
   social: {
     github: "https://github.com/BastienCarcat",
     linkedin: "https://www.linkedin.com/in/bastien-carcat-1a8707175",
-    malt: "https://taap.it/RtWUMB",
+    malt: "https://pim.ms/EvmsDMW",
     x: "https://x.com/BastienCrct",
   },
 
